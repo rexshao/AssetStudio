@@ -272,10 +272,21 @@ namespace AssetStudioGUI
                 Directory.CreateDirectory(dir);
                 return true;
             }
+            if (Properties.Settings.Default.assetGroupOption ==1)
+            {
+                if (Properties.Settings.Default.overwriteExists){
+                    return true;
+                }
+                return false;
+            }
             fullPath = Path.Combine(dir, fileName + item.UniqueID + extension);
             if (!File.Exists(fullPath))
             {
                 Directory.CreateDirectory(dir);
+                return true;
+            }
+            if (Properties.Settings.Default.overwriteExists)
+            {
                 return true;
             }
             return false;
