@@ -32,6 +32,7 @@
             this.OKbutton = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.overwriteExists = new System.Windows.Forms.CheckBox();
             this.openAfterExport = new System.Windows.Forms.CheckBox();
             this.restoreExtensionName = new System.Windows.Forms.CheckBox();
             this.assetGroupOptions = new System.Windows.Forms.ComboBox();
@@ -94,6 +95,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.overwriteExists);
             this.groupBox1.Controls.Add(this.openAfterExport);
             this.groupBox1.Controls.Add(this.restoreExtensionName);
             this.groupBox1.Controls.Add(this.assetGroupOptions);
@@ -119,6 +121,18 @@
             this.openAfterExport.TabIndex = 10;
             this.openAfterExport.Text = "Open folder after export";
             this.openAfterExport.UseVisualStyleBackColor = true;
+            // 
+            // overwriteExists
+            // 
+            this.overwriteExists.AutoSize = true;
+            this.overwriteExists.Checked = false;
+            this.overwriteExists.CheckState = System.Windows.Forms.CheckState.Unchecked;
+            this.overwriteExists.Location = new System.Drawing.Point(6, 182);
+            this.overwriteExists.Name = "overwriteExists";
+            this.overwriteExists.Size = new System.Drawing.Size(178, 16);
+            this.overwriteExists.TabIndex = 11;
+            this.overwriteExists.Text = "Overwrite file if exists";
+            this.overwriteExists.UseVisualStyleBackColor = true;
             // 
             // restoreExtensionName
             // 
@@ -528,6 +542,7 @@
         private System.Windows.Forms.ComboBox assetGroupOptions;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox restoreExtensionName;
+        private System.Windows.Forms.CheckBox overwriteExists;
         private System.Windows.Forms.CheckBox openAfterExport;
         private System.Windows.Forms.CheckBox exportAllUvsAsDiffuseMaps;
         private System.Windows.Forms.ToolTip exportUvsTooltip;
