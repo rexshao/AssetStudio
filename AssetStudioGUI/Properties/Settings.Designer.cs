@@ -70,6 +70,21 @@ namespace AssetStudioGUI.Properties {
                 this["openAfterExport"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool overwriteExists
+        {
+            get
+            {
+                return ((bool)(this["overwriteExists"]));
+            }
+            set
+            {
+                this["overwriteExists"] = value;
+            }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
