@@ -140,13 +140,31 @@ namespace AssetStudioGUI
 
         private async void loadFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.InitialDirectory = openDirectoryBackup;
-            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+            string[] loadPaths=null;
+            if (Properties.Settings.Default.quickLoadExport)
             {
-                ResetForm();
-                openDirectoryBackup = Path.GetDirectoryName(openFileDialog1.FileNames[0]);
+                var loadPath = Properties.Settings.Default.quickLoadFrom;
+                if (File.Exists(loadPath))
+                {
+                    loadPaths = new string[] { loadPath };
+                }
+            }
+            if (loadPaths==null)
+            {
+                openFileDialog1.InitialDirectory = openDirectoryBackup;
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    loadPaths = openFileDialog1.FileNames;
+                    openDirectoryBackup = loadPaths[0];
+                    Properties.Settings.Default.quickLoadFrom = openFileDialog1.FileNames[0];
+                    Properties.Settings.Default.Save();
+                }
+            }
+            if (loadPaths!=null)
+            {
+                ResetForm();              
                 assetsManager.SpecifyUnityVersion = specifyUnityVersion.Text;
-                await Task.Run(() => assetsManager.LoadFiles(openFileDialog1.FileNames));
+                await Task.Run(() => assetsManager.LoadFiles(loadPaths));
                 BuildAssetStructures();
             }
         }
@@ -344,15 +362,33 @@ namespace AssetStudioGUI
                 }
             }
         }
-
+        private string getExporttoPath()
+        {
+            if (Properties.Settings.Default.quickLoadExport)
+            {
+                if (Directory.Exists(Properties.Settings.Default.quickExportTo))
+                {
+                    return Properties.Settings.Default.quickExportTo;
+                }
+            }
+            var saveFolderDialog = new OpenFolderDialog();
+            saveFolderDialog.InitialFolder = saveDirectoryBackup;
+            if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                saveDirectoryBackup = saveFolderDialog.Folder;
+                Properties.Settings.Default.quickExportTo = saveFolderDialog.Folder;
+                Properties.Settings.Default.Save();
+                return saveFolderDialog.Folder;
+            }
+            return "";
+        }
         private void exportClassStructuresMenuItem_Click(object sender, EventArgs e)
         {
             if (classesListView.Items.Count > 0)
             {
-                var saveFolderDialog = new OpenFolderDialog();
-                if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
+                string savePath = getExporttoPath();
+                if (savePath.Length > 0)
                 {
-                    var savePath = saveFolderDialog.Folder;
                     var count = classesListView.Items.Count;
                     int i = 0;
                     Progress.Reset();
@@ -1315,12 +1351,10 @@ namespace AssetStudioGUI
 
             if (animator != null)
             {
-                var saveFolderDialog = new OpenFolderDialog();
-                saveFolderDialog.InitialFolder = saveDirectoryBackup;
-                if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
+                string savePath = getExporttoPath();
+                if (savePath.Length > 0)
                 {
-                    saveDirectoryBackup = saveFolderDialog.Folder;
-                    var exportPath = Path.Combine(saveFolderDialog.Folder, "Animator") + Path.DirectorySeparatorChar;
+                    var exportPath = Path.Combine(savePath, "Animator") + Path.DirectorySeparatorChar;
                     ExportAnimatorWithAnimationClip(animator, animationList, exportPath);
                 }
             }
@@ -1340,12 +1374,10 @@ namespace AssetStudioGUI
         {
             if (sceneTreeView.Nodes.Count > 0)
             {
-                var saveFolderDialog = new OpenFolderDialog();
-                saveFolderDialog.InitialFolder = saveDirectoryBackup;
-                if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
+                string savePath = getExporttoPath(); getExporttoPath();
+                if (savePath.Length > 0)
                 {
-                    saveDirectoryBackup = saveFolderDialog.Folder;
-                    var exportPath = Path.Combine(saveFolderDialog.Folder, "GameObject") + Path.DirectorySeparatorChar;
+                    var exportPath = Path.Combine(savePath, "GameObject") + Path.DirectorySeparatorChar;
                     List<AssetItem> animationList = null;
                     if (animation)
                     {
@@ -1484,13 +1516,11 @@ namespace AssetStudioGUI
         {
             if (sceneTreeView.Nodes.Count > 0)
             {
-                var saveFolderDialog = new OpenFolderDialog();
-                saveFolderDialog.InitialFolder = saveDirectoryBackup;
-                if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    saveDirectoryBackup = saveFolderDialog.Folder;
-                    var savePath = saveFolderDialog.Folder + Path.DirectorySeparatorChar;
-                    ExportSplitObjects(savePath, sceneTreeView.Nodes);
+                string savePath = getExporttoPath();
+                if (savePath.Length > 0)
+                {                  
+                    var exportToPath = savePath + Path.DirectorySeparatorChar;
+                    ExportSplitObjects(exportToPath, sceneTreeView.Nodes);
                 }
             }
             else
@@ -1546,12 +1576,10 @@ namespace AssetStudioGUI
         {
             if (exportableAssets.Count > 0)
             {
-                var saveFolderDialog = new OpenFolderDialog();
-                saveFolderDialog.InitialFolder = saveDirectoryBackup;
-                if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
+                string savePath = getExporttoPath(); getExporttoPath();
+                if (savePath.Length > 0)
                 {
                     timer.Stop();
-                    saveDirectoryBackup = saveFolderDialog.Folder;
                     List<AssetItem> toExportAssets = null;
                     switch (type)
                     {
@@ -1565,7 +1593,7 @@ namespace AssetStudioGUI
                             toExportAssets = visibleAssets;
                             break;
                     }
-                    Studio.ExportAssets(saveFolderDialog.Folder, toExportAssets, exportType);
+                    Studio.ExportAssets(savePath, toExportAssets, exportType);
                 }
             }
             else
@@ -1580,12 +1608,10 @@ namespace AssetStudioGUI
 
             if (exportableAssets.Count > 0)
             {
-                var saveFolderDialog = new OpenFolderDialog();
-                saveFolderDialog.InitialFolder = saveDirectoryBackup;
-                if (saveFolderDialog.ShowDialog(this) == DialogResult.OK)
+                string savePath = getExporttoPath();
+                if (savePath.Length > 0)
                 {
-                    timer.Stop();
-                    saveDirectoryBackup = saveFolderDialog.Folder;
+                    timer.Stop();                
                     List<AssetItem> toExportAssets = null;
                     switch (type)
                     {
@@ -1599,7 +1625,7 @@ namespace AssetStudioGUI
                             toExportAssets = visibleAssets;
                             break;
                     }
-                    Studio.ExportAssetsList(saveFolderDialog.Folder, toExportAssets, ExportListType.XML);
+                    Studio.ExportAssetsList(savePath, toExportAssets, ExportListType.XML);
                 }
             }
             else

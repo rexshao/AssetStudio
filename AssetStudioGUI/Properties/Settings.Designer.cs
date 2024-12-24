@@ -73,7 +73,7 @@ namespace AssetStudioGUI.Properties {
 
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool overwriteExists
         {
             get
@@ -88,7 +88,53 @@ namespace AssetStudioGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool quickLoadExport
+        {
+            get
+            {
+                return ((bool)(this["quickLoadExport"]));
+            }
+            set
+            {
+                this["quickLoadExport"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string quickLoadFrom
+        {
+            get
+            {
+                return ((string)(this["quickLoadFrom"]));
+            }
+            set
+            {
+                this["quickLoadFrom"] = value;
+            }
+        }
+
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string quickExportTo
+        {
+            get
+            {
+                return ((string)(this["quickExportTo"]));
+            }
+            set
+            {
+                this["quickExportTo"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int assetGroupOption {
             get {
                 return ((int)(this["assetGroupOption"]));

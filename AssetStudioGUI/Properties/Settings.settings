@@ -15,10 +15,19 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="overwriteExists" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+	<Setting Name="quickLoadExport" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+	<Setting Name="quickLoadFrom" Type="System.String" Scope="User">
+		<Value Profile="(Default)"></Value>
+	</Setting>
+	<Setting Name="quickExportTo" Type="System.String" Scope="User">
+		<Value Profile="(Default)"></Value>
+	</Setting>
     <Setting Name="assetGroupOption" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="convertTexture" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

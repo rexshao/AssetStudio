@@ -22,6 +22,9 @@ namespace AssetStudioGUI
                     break;
                 }
             }
+            quickLoadExport.Checked = Properties.Settings.Default.quickLoadExport;
+            quickExportTo.Text = Properties.Settings.Default.quickExportTo;
+            quickLoadFrom.Text = Properties.Settings.Default.quickLoadFrom;
             overwriteExists.Checked = Properties.Settings.Default.overwriteExists;
             openAfterExport.Checked = Properties.Settings.Default.openAfterExport;
             eulerFilter.Checked = Properties.Settings.Default.eulerFilter;
@@ -53,6 +56,9 @@ namespace AssetStudioGUI
                     break;
                 }
             }
+            Properties.Settings.Default.quickLoadFrom = quickLoadFrom.Text;
+            Properties.Settings.Default.quickExportTo = quickExportTo.Text;
+            Properties.Settings.Default.quickLoadExport = quickLoadExport.Checked;
             Properties.Settings.Default.overwriteExists = overwriteExists.Checked;
             Properties.Settings.Default.openAfterExport = openAfterExport.Checked;
             Properties.Settings.Default.eulerFilter = eulerFilter.Checked;

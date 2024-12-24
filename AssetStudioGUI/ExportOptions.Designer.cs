@@ -33,10 +33,15 @@
             this.Cancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.overwriteExists = new System.Windows.Forms.CheckBox();
+            this.quickLoadExport = new System.Windows.Forms.CheckBox();
+            this.quickLoadFrom = new System.Windows.Forms.TextBox();
+            this.quickExportTo = new System.Windows.Forms.TextBox();
             this.openAfterExport = new System.Windows.Forms.CheckBox();
             this.restoreExtensionName = new System.Windows.Forms.CheckBox();
             this.assetGroupOptions = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.convertAudio = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.totga = new System.Windows.Forms.RadioButton();
@@ -95,11 +100,16 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.quickLoadExport);
+            this.groupBox1.Controls.Add(this.quickLoadFrom);
+            this.groupBox1.Controls.Add(this.quickExportTo);
             this.groupBox1.Controls.Add(this.overwriteExists);
             this.groupBox1.Controls.Add(this.openAfterExport);
             this.groupBox1.Controls.Add(this.restoreExtensionName);
             this.groupBox1.Controls.Add(this.assetGroupOptions);
             this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.convertAudio);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.converttexture);
@@ -133,6 +143,54 @@
             this.overwriteExists.TabIndex = 11;
             this.overwriteExists.Text = "Overwrite file if exists";
             this.overwriteExists.UseVisualStyleBackColor = true;
+            // 
+            // quickLoadExport
+            // 
+            this.quickLoadExport.AutoSize = true;
+            this.quickLoadExport.Checked = false;
+            this.quickLoadExport.CheckState = System.Windows.Forms.CheckState.Unchecked;
+            this.quickLoadExport.Location = new System.Drawing.Point(6, 204);
+            this.quickLoadExport.Name = "quickLoadExport";
+            this.quickLoadExport.Size = new System.Drawing.Size(178, 16);
+            this.quickLoadExport.TabIndex = 12;
+            this.quickLoadExport.Text = "Do load or export with last selected path";
+            this.quickLoadExport.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 226);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(149, 12);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Last load from:";
+            // 
+            // quickLoadFrom
+            // 
+            this.quickLoadFrom.AutoSize = true;
+            this.quickLoadFrom.Location = new System.Drawing.Point(6, 243);
+            this.quickLoadFrom.Name = "lastLoadFrom";
+            this.quickLoadFrom.Size = new System.Drawing.Size(178, 16);
+            this.quickLoadFrom.TabIndex = 13;
+            this.quickLoadFrom.Text = "";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 265);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(149, 12);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Last export to:";
+            // 
+            // quickExportTo
+            // 
+            this.quickExportTo.AutoSize = true;
+            this.quickExportTo.Location = new System.Drawing.Point(6, 280);
+            this.quickExportTo.Name = "quickExportTo";
+            this.quickExportTo.Size = new System.Drawing.Size(178, 16);
+            this.quickExportTo.TabIndex = 14;
+            this.quickExportTo.Text = "";
             // 
             // restoreExtensionName
             // 
@@ -541,8 +599,13 @@
         private System.Windows.Forms.CheckBox exportAnimations;
         private System.Windows.Forms.ComboBox assetGroupOptions;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox restoreExtensionName;
         private System.Windows.Forms.CheckBox overwriteExists;
+        private System.Windows.Forms.CheckBox quickLoadExport;
+        private System.Windows.Forms.TextBox quickLoadFrom;
+        private System.Windows.Forms.TextBox quickExportTo;
         private System.Windows.Forms.CheckBox openAfterExport;
         private System.Windows.Forms.CheckBox exportAllUvsAsDiffuseMaps;
         private System.Windows.Forms.ToolTip exportUvsTooltip;
